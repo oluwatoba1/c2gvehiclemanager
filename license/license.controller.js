@@ -23,6 +23,20 @@ const save = async (req, res) => {
 	}
 };
 
+const getApplications = async (req, res) => {
+	try {
+		const applications = License.find({});
+
+		res.status(200).json({
+			data: applications
+		})
+	} catch (error) {
+		console.error(err.message);
+		res.status(500).send('Server Error');
+	}
+}
+
 module.exports = {
-	save
+	save,
+	getApplications
 };

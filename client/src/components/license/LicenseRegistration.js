@@ -71,7 +71,7 @@ export default function Registration({history}) {
 		return (
 			<h1>{info}</h1>
 		)
-	}else{
+	}
 
 	return (
 		<LicenseContainer>
@@ -149,5 +149,4 @@ export default function Registration({history}) {
 			</LicenseFormContainer>
 		</LicenseContainer>
 	);
-	}
 }
