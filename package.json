@@ -1,0 +1,36 @@
+{
+	"name": "c2gVIO",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "node server.js",
+		"server": "nodemon server.js",
+		"client": "npm start --prefix client",
+		"clientInstall": "npm install --prefix client",
+		"dev": "concurrently \"npm run server\" \"npm run client\""
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@hapi/joi": "^17.1.1",
+		"@sendgrid/mail": "^7.2.3",
+		"cookie-parser": "~1.4.4",
+		"cors": "^2.8.5",
+		"debug": "~2.6.9",
+		"errorhandler": "^1.5.1",
+		"express-fileupload": "^1.1.7-alpha.3",
+		"express-jwt": "^5.3.3",
+		"bcryptjs": "^2.4.3",
+		"config": "^3.2.3",
+		"express": "^4.17.1",
+		"express-validator": "^6.2.0",
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^5.7.5"
+	},
+	"devDependencies": {
+		"concurrently": "^5.0.0",
+		"nodemon": "^1.19.3"
+	}
+}
