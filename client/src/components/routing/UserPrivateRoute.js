@@ -5,11 +5,12 @@ import AuthContext from '../../context/auth/authContext';
 const UserPrivateRoute = ({ component: Component, ...rest }) => {
 	const authContext = useContext(AuthContext);
 	const { user, loading } = authContext;
+	const token = localStorage.getItem('token');
 	return (
 		<Route
 			{...rest}
 			render={props =>
-				!user && !loading ? <Redirect to="/userlogin" /> : <Component {...props} />
+				(!!user || !!token) && !loading ? <Redirect to="/userlogin" /> : <Component {...props} />
 			}
 		/>
 	);

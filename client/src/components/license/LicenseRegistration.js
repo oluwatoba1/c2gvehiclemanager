@@ -17,15 +17,15 @@ import AlertContext from '../../context/alert/alertContext';
 import LicenseContext from '../../context/license/licenseContext';
 import Navbar from '../layout/Navbar';
 
-export default function Registration({history}) {
+export default function Registration({ history }) {
 	const authContext = useContext(AuthContext);
 	const licenseContext = useContext(LicenseContext);
 
 	const alertContext = useContext(AlertContext);
 
 	const { setAlert } = alertContext;
-	const {loadUser, logout} = authContext;
-	const {saveCredentials, info, error} = licenseContext;
+	const { loadUser, logout } = authContext;
+	const { saveCredentials, info, error } = licenseContext;
 
 	const getDefaultFields = () => ({
 		application_type: '',
@@ -33,10 +33,10 @@ export default function Registration({history}) {
 		state_of_application: '',
 		application: '',
 		residential_address: ''
-	})
+	});
 
 	const [registrationFields, setFields] = useState(getDefaultFields());
-	const [showSuccess, setShowSuccess] = useState(false)
+	const [showSuccess, setShowSuccess] = useState(false);
 
 	const {
 		application_type,
@@ -59,23 +59,21 @@ export default function Registration({history}) {
 
 	const submit = () => {
 		saveCredentials(registrationFields);
-		if(info !==null) {
+		if (!!infol) {
 			setShowSuccess(true);
-			}
+		}
 
-		if(error) setAlert(error, 'danger', 3000)
-			setFields(getDefaultFields());
+		if (error) setAlert(error, 'danger', 3000);
+		setFields(getDefaultFields());
 	};
 
-	if(showSuccess){
-		return (
-			<h1>{info}</h1>
-		)
+	if (showSuccess) {
+		return <h1>{info}</h1>;
 	}
 
 	return (
 		<LicenseContainer>
-		<Navbar />
+			<Navbar />
 			<LicenseFormContainer>
 				<LicenseHeader>
 					<LicenseHeaderText>License Registration</LicenseHeaderText>

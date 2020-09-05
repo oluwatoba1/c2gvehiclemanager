@@ -22,7 +22,7 @@ if(loading){
     <ApplicationsContainer>
     <ApplicationList>
     {applications.map(application=> (
-      <ApplicationListItem>{application._id}</ApplicationListItem>
+      <ApplicationListItem>{application._id},status: {application.status}</ApplicationListItem>
     ))}
     </ApplicationList>
 
