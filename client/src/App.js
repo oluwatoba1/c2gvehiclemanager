@@ -6,8 +6,10 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import AdminLogin from './components/auth/AdminLogin';
 import UserPrivateRoute from './components/routing/UserPrivateRoute';
-import AdminPrivateRoute from './components/routing/UserPrivateRoute';
+import AdminPrivateRoute from './components/routing/AdminPrivateRoute';
 import LicenseRegistration from './components/license/LicenseRegistration';
+import Dashboard from './components/admin/Dashboard';
+import Applications from './components/admin/Applications';
 
 import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/AlertState';
@@ -23,21 +25,23 @@ const App = () => {
 	return (
 		<AuthState>
 			<AlertState>
-			<LicenseState>
-				<Router>
-					<Fragment>
-						{/* <div className="container"> */}
-						<Alerts />
-						<Switch>
-							<UserPrivateRoute exact path="/" component={LicenseRegistration} />
-							{/* <AdminPrivateRoute exact path="/" component={AdminDashboard} /> */}
-							<Route exact path="/register" component={Register} />
-							<Route exact path="/userlogin" component={Login} />
-							<Route exact path="/adminlogin" component={AdminLogin} />
-						</Switch>
-						{/* </div> */}
-					</Fragment>
-				</Router>
+				<LicenseState>
+					<Router>
+						<Fragment>
+							{/* <div className="container"> */}
+							<Alerts />
+							<Switch>
+								<UserPrivateRoute exact path="/" component={LicenseRegistration} />
+								<Route exact path="/dashboard" component={Dashboard} />
+								<Route exact path="/applications" component={Applications} />
+								{/* <AdminPrivateRoute exact path="/" component={AdminDashboard} /> */}
+								<Route exact path="/register" component={Register} />
+								<Route exact path="/userlogin" component={Login} />
+								<Route exact path="/adminlogin" component={AdminLogin} />
+							</Switch>
+							{/* </div> */}
+						</Fragment>
+					</Router>
 				</LicenseState>
 			</AlertState>
 		</AuthState>

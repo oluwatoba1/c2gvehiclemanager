@@ -10,7 +10,7 @@ const AdminPrivateRoute = ({ component: Component, ...rest }) => {
 		<Route
 			{...rest}
 			render={props =>
-				(!!user || !!token) && user.role !== null && !loading ? (
+				!user && user.role !== null && !loading ? (
 					<Redirect to="/adminlogin" />
 				) : (
 					<Component {...props} />

@@ -16,6 +16,6 @@ router.post('/', auth, validateFields, save);
 // @route       POST api/users
 // @desc        Register a user
 // @access      Public
-router.get('/', auth, getApplications);
+router.get('/', getApplications);
 
 module.exports = router;

@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const LicenseContainer = styled.div`
 	width: 100vw;
@@ -62,6 +62,7 @@ export const LicenseLabel = styled.label`
 export const LicenseInput = styled.input`
 	padding: 10px;
 	border-radius: 5px;
+	border: 1px solid #000;
 	outline: #000;
 	::placeholder {
 		color: rgba(0, 0, 0, 0.5);

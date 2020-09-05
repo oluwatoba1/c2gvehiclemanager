@@ -59,7 +59,7 @@ export default function Registration({ history }) {
 
 	const submit = () => {
 		saveCredentials(registrationFields);
-		if (!!infol) {
+		if (!!info) {
 			setShowSuccess(true);
 		}
 
