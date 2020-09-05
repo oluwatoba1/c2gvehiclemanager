@@ -17,17 +17,18 @@ import AlertContext from '../../context/alert/alertContext';
 import LicenseContext from '../../context/license/licenseContext';
 import Navbar from '../layout/Navbar';
 
-export default function Registration({ history }) {
+export default function Registration() {
 	const authContext = useContext(AuthContext);
 	const licenseContext = useContext(LicenseContext);
 
 	const alertContext = useContext(AlertContext);
 
 	const { setAlert } = alertContext;
-	const { loadUser, logout } = authContext;
+	const { loadUser, user } = authContext;
 	const { saveCredentials, info, error } = licenseContext;
 
 	const getDefaultFields = () => ({
+		user: user?._id,
 		application_type: '',
 		test_scores: '',
 		state_of_application: '',

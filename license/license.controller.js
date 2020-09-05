@@ -21,7 +21,9 @@ const save = async (req, res) => {
 
 const getApplications = async (req, res) => {
 	try {
-		const applications = await License.find().populate({ path: 'user', select: '-password' });
+		const applications = await License.find()
+			.populate({ path: 'user', select: '-password' })
+			.sort({ createdAt: -1 });
 
 		res.json({
 			data: applications

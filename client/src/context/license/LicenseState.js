@@ -2,10 +2,7 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import LicenseContext from './licenseContext';
 import licenseReducer from './licenseReducer';
-import {
-	LICENSE_REG_FAIL,
-	LICENSE_REG_SUCCESS,
-} from '../types';
+import { LICENSE_REG_FAIL, LICENSE_REG_SUCCESS } from '../types';
 
 const LicenseState = props => {
 	const initialState = {
@@ -15,7 +12,7 @@ const LicenseState = props => {
 
 	const [state, dispatch] = useReducer(licenseReducer, initialState);
 
-//  Login user
+	//  Login user
 	const saveCredentials = async formData => {
 		const config = {
 			headers: {
@@ -29,11 +26,10 @@ const LicenseState = props => {
 				type: LICENSE_REG_SUCCESS,
 				payload: res.data
 			});
-
 		} catch (error) {
 			dispatch({
 				type: LICENSE_REG_FAIL,
-				payload: error.response.data.msg
+				payload: error.response.msg
 			});
 		}
 	};

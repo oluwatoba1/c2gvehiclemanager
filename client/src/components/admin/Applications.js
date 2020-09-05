@@ -7,7 +7,17 @@ import {
 	ApplicationId,
 	ApplicationStatus,
 	ModalContainer,
-	ModalBody
+	ModalBody,
+	ModalCloseButton,
+	LicenseHeader,
+	LicenseHeaderText,
+	ModalDetails,
+	ItemWrapper,
+	LicenseItem,
+	LicenseText,
+	ButtonContainer,
+	AcceptButton,
+	RejectButton
 } from '../styled-components';
 import Spinner from '../layout/Spinner';
 
@@ -15,7 +25,7 @@ export default function Applications() {
 	const [applications, setApplications] = useState({
 		data: []
 	});
-	const [application, setApplication] = useState(null);
+	const [item, setApplication] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [showModal, setShowModal] = useState(false);
 
@@ -41,12 +51,49 @@ export default function Applications() {
 		<ApplicationContainer>
 			{showModal && (
 				<ModalContainer>
-					<ModalBody>{application.application_type}</ModalBody>
+					<ModalBody>
+						<ModalCloseButton onClick={toggleModal}>&times;</ModalCloseButton>
+						<LicenseHeader>
+							<LicenseHeaderText>
+								{item.user?.first_name} {item.user?.last_name}
+							</LicenseHeaderText>
+						</LicenseHeader>
+						<ModalDetails>
+							<ItemWrapper>
+								<LicenseItem>Application Type:</LicenseItem>
+								<LicenseText>{item.application_type}</LicenseText>
+							</ItemWrapper>
+							<ItemWrapper>
+								<LicenseItem>Test Score:</LicenseItem>
+								<LicenseText>{item.test_scores}</LicenseText>
+							</ItemWrapper>
+						</ModalDetails>
+						<ModalDetails>
+							<ItemWrapper>
+								<LicenseItem>State:</LicenseItem>
+								<LicenseText>{item.state_of_application}</LicenseText>
+							</ItemWrapper>
+							<ItemWrapper>
+								<LicenseItem>Application:</LicenseItem>
+								<LicenseText>{item.application}</LicenseText>
+							</ItemWrapper>
+						</ModalDetails>
+						<ModalDetails>
+							<ItemWrapper>
+								<LicenseItem>Residential Address:</LicenseItem>
+								<LicenseText>{item.residential_address}</LicenseText>
+							</ItemWrapper>
+						</ModalDetails>
+						<ButtonContainer>
+							<AcceptButton>Accept</AcceptButton>
+							<RejectButton>Reject</RejectButton>
+						</ButtonContainer>
+					</ModalBody>
 				</ModalContainer>
 			)}
 			<ApplicationList>
 				{applications.data.map(application => (
-					<ApplicationListItem onClick={() => getApplication(application)}>
+					<ApplicationListItem key={application._id} onClick={() => getApplication(application)}>
 						<ApplicationId>{application._id}</ApplicationId>
 						<ApplicationStatus>{application.status}</ApplicationStatus>
 					</ApplicationListItem>

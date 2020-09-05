@@ -4,7 +4,8 @@ const LicenseSchema = mongoose.Schema(
 	{
 		user: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: 'applicant'
+			ref: 'applicant',
+			required: true
 		},
 
 		application_type: {
