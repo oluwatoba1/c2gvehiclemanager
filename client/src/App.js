@@ -4,7 +4,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Alerts from './components/layout/Alerts';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
-import PrivateRoute from './components/routing/PrivateRoute';
+import AdminLogin from './components/auth/AdminLogin';
+import UserPrivateRoute from './components/routing/UserPrivateRoute';
+import AdminPrivateRoute from './components/routing/UserPrivateRoute';
+import LicenseRegistration from './components/license/LicenseRegistration';
 
 import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/AlertState';
@@ -21,13 +24,16 @@ const App = () => {
 			<AlertState>
 				<Router>
 					<Fragment>
-						<div className="container">
-							<Alerts />
-							<Switch>
-								<Route exact path="/register" component={Register} />
-								<Route exact path="/login" component={Login} />
-							</Switch>
-						</div>
+						{/* <div className="container"> */}
+						<Alerts />
+						<Switch>
+							<UserPrivateRoute exact path="/" component={LicenseRegistration} />
+							{/* <AdminPrivateRoute exact path="/" component={AdminDashboard} /> */}
+							<Route exact path="/register" component={Register} />
+							<Route exact path="/userlogin" component={Login} />
+							<Route exact path="/adminlogin" component={AdminLogin} />
+						</Switch>
+						{/* </div> */}
 					</Fragment>
 				</Router>
 			</AlertState>

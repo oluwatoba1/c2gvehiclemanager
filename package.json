@@ -1,8 +1,8 @@
 {
-	"name": "c2gVIO",
+	"name": "vehicle-registration-manager",
 	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
+	"description": "Vehicle registration manager",
+	"main": "server.js",
 	"scripts": {
 		"start": "node server.js",
 		"server": "nodemon server.js",
@@ -30,7 +30,7 @@
 		"mongoose": "^5.7.5"
 	},
 	"devDependencies": {
-		"concurrently": "^5.0.0",
-		"nodemon": "^1.19.3"
+		"concurrently": "^5.3.0",
+		"nodemon": "^1.19.4"
 	}
 }

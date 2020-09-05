@@ -4,7 +4,7 @@ import AuthContext from '../../context/auth/authContext';
 
 import Navbar from '../layout/Navbar';
 
-const Login = props => {
+const AdminLogin = props => {
 	const [user, setUser] = useState({
 		email: '',
 		password: ''
@@ -16,11 +16,11 @@ const Login = props => {
 	const authContext = useContext(AuthContext);
 
 	const { setAlert } = alertContext;
-	const { applicantLogin, error, clearErrors, isAuthenticated } = authContext;
+	const { adminLogin, error, clearErrors, isAuthenticated } = authContext;
 
 	useEffect(() => {
 		if (isAuthenticated) {
-			props.history.push('/');
+			props.history.push('/admin');
 		}
 
 		if (error === 'Invalid credentials') {
@@ -48,7 +48,7 @@ const Login = props => {
 		} else if (password === '') {
 			setAlert(`Please complete the password field`, 'danger');
 		} else {
-			applicantLogin({
+			adminLogin({
 				email,
 				password
 			});
@@ -57,10 +57,9 @@ const Login = props => {
 
 	return (
 		<Fragment>
-			<Navbar showRegister />
-
+			<Navbar />
 			<div className="form-container">
-				<h1>Applicant Login</h1>
+				<h1>Admin Login</h1>
 
 				<form onSubmit={onSubmit}>
 					<div className="form-group">
@@ -79,4 +78,4 @@ const Login = props => {
 	);
 };
 
-export default Login;
+export default AdminLogin;
