@@ -1,51 +1,22 @@
 import React, { useReducer } from 'react';
 import axios from 'axios';
-import AuthContext from './authContext';
-import authReducer from './authReducer';
-import setAuthToken from '../../utils/setAuthToken';
+import LicenseContext from './licenseContext';
+import licenseReducer from './licenseReducer';
 import {
-	REGISTER_SUCCESS,
-	REGISTER_FAIL,
-	USER_LOADED,
-	AUTH_ERROR,
-	LOGIN_SUCCESS,
-	LOGIN_FAIL,
-	LOGOUT,
-	CLEAR_ERRORS
+	LICENSE_REG_FAIL,
+	LICENSE_REG_SUCCESS,
 } from '../types';
 
-const AuthState = props => {
+const LicenseState = props => {
 	const initialState = {
-		token: localStorage.getItem('token'),
-		isAuthenticated: null,
-		loading: true,
-		user: null,
+		info: null,
 		error: null
 	};
 
-	const [state, dispatch] = useReducer(authReducer, initialState);
+	const [state, dispatch] = useReducer(licenseReducer, initialState);
 
-	// Load / Check user
-	const loadUser = async () => {
-		// @todo - load token into global headers
-		if (localStorage.token) {
-			setAuthToken(localStorage.token);
-		}
-
-		try {
-			const res = await axios.get('/api/auth');
-
-			dispatch({
-				type: USER_LOADED,
-				payload: res.data
-			});
-		} catch (error) {
-			dispatch({ type: AUTH_ERROR });
-		}
-	};
-
-	//  Register user
-	const register = async formData => {
+//  Login user
+	const saveCredentials = async formData => {
 		const config = {
 			headers: {
 				'Content-Type': 'application/json'
@@ -53,99 +24,30 @@ const AuthState = props => {
 		};
 
 		try {
-			const res = await axios.post('/api/users', formData, config);
+			const res = await axios.post('/api/license/', formData, config);
 			dispatch({
-				type: REGISTER_SUCCESS,
+				type: LICENSE_REG_SUCCESS,
 				payload: res.data
 			});
 
-			loadUser();
 		} catch (error) {
 			dispatch({
-				type: REGISTER_FAIL,
+				type: LICENSE_REG_FAIL,
 				payload: error.response.data.msg
 			});
 		}
 	};
-
-	//  Login user
-	const applicantLogin = async formData => {
-		const config = {
-			headers: {
-				'Content-Type': 'application/json'
-			}
-		};
-
-		try {
-			const res = await axios.post('/api/auth/applicant', formData, config);
-			dispatch({
-				type: LOGIN_SUCCESS,
-				payload: res.data
-			});
-
-			loadUser();
-		} catch (error) {
-			dispatch({
-				type: LOGIN_FAIL,
-				payload: error.response.data.msg
-			});
-		}
-	};
-
-	const adminLogin = async formData => {
-		const config = {
-			headers: {
-				'Content-Type': 'application/json'
-			}
-		};
-
-		try {
-			const res = await axios.post('/api/auth/admin', formData, config).then(() => {
-				dispatch({
-					type: LOGIN_SUCCESS,
-					payload: res.data
-				});
-			});
-			loadUser();
-		} catch (error) {
-			if (error.response.status === 500) {
-				dispatch({
-					type: LOGIN_FAIL,
-					payload: 'Server error'
-				});
-			} else if (error.response.status === 422) {
-				dispatch({
-					type: LOGIN_FAIL,
-					payload: 'Invalid credentials'
-				});
-			}
-		}
-	};
-
-	//  Logout
-	const logout = () => dispatch({ type: LOGOUT });
-
-	//  Clear errors
-	const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
 
 	return (
-		<AuthContext.Provider
+		<LicenseContext.Provider
 			value={{
-				token: state.token,
-				isAuthenticated: state.isAuthenticated,
-				loading: state.loading,
-				user: state.user,
+				info: state.info,
 				error: state.error,
-				loadUser,
-				register,
-				applicantLogin,
-				adminLogin,
-				logout,
-				clearErrors
+				saveCredentials
 			}}>
 			{props.children}
-		</AuthContext.Provider>
+		</LicenseContext.Provider>
 	);
 };
 
-export default AuthState;
+export default LicenseState;

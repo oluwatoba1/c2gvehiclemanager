@@ -21,3 +21,4 @@ try {
 // setup models
 require('../models/Admin');
 require('../models/Applicant');
+require('../models/License');

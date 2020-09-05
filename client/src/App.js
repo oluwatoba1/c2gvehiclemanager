@@ -11,6 +11,7 @@ import LicenseRegistration from './components/license/LicenseRegistration';
 
 import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/AlertState';
+import LicenseState from './context/license/LicenseState';
 
 import setAuthToken from './utils/setAuthToken';
 
@@ -22,6 +23,7 @@ const App = () => {
 	return (
 		<AuthState>
 			<AlertState>
+			<LicenseState>
 				<Router>
 					<Fragment>
 						{/* <div className="container"> */}
@@ -36,6 +38,7 @@ const App = () => {
 						{/* </div> */}
 					</Fragment>
 				</Router>
+				</LicenseState>
 			</AlertState>
 		</AuthState>
 	);

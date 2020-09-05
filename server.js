@@ -14,6 +14,7 @@ app.get('/', (req, res) => res.json({ msg: 'Welcome to Contact Keeper API' }));
 //Define routes
 app.use('/api/users', require('./applicants/applicants.routes'));
 app.use('/api/auth', require('./auth/auth.routes'));
+app.use('/api/license', require('./license/license.routes'));
 
 const PORT = process.env.PORT || 8000;
 

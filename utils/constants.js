@@ -1,6 +1,7 @@
 const models = {
 	Admin: 'admin',
-	Applicant: 'applicant'
+	Applicant: 'applicant',
+	License: 'license'
 };
 
 module.exports = {

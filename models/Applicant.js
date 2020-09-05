@@ -16,7 +16,7 @@ const ApplicantSchema = mongoose.Schema(
 			unique: true
 		},
 		date_of_birth: {
-			type: Date,
+			type: String,
 			required: true
 		},
 		sex: {

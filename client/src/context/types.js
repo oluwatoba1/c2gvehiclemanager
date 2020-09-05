@@ -12,3 +12,5 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const LICENSE_REG_SUCCESS = 'LICENSE_REG_SUCCESS';
+export const LICENSE_REG_FAIL = 'LICENSE_REG_FAIL';

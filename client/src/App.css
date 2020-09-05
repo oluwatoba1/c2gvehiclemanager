@@ -207,6 +207,12 @@ img {
 	width: 100%;
 }
 
+.logout{
+	color: #fff;
+	font-size: 16px;
+	text-decoration: none;
+}
+
 .btn-sm {
 	font-size: 0.8rem;
 	padding: 0.3rem 1rem;
@@ -408,13 +414,17 @@ table th {
 	transition: opacity 1000ms ease-in;
 }
 
-selectvms {
+.selectvms {
 	/* height: 30px; */
 	outline: #000;
 	border: 2px solid #000;
 	border-radius: 5px;
 	padding: 10px;
-	width: 20%;
+	width: 60%;
+}
+
+.icon-white{
+	background-color: #fff;
 }
 
 /* Mobile Styles */

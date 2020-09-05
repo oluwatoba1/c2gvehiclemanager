@@ -4,12 +4,12 @@ import AuthContext from '../../context/auth/authContext';
 
 const AdminPrivateRoute = ({ component: Component, ...rest }) => {
 	const authContext = useContext(AuthContext);
-	const { isAuthenticated, loading } = authContext;
+	const { isAuthenticated, user, loading } = authContext;
 	return (
 		<Route
 			{...rest}
 			render={props =>
-				!isAuthenticated && !loading ? <Redirect to="/login" /> : <Component {...props} />
+				!user && user.role !==null && !loading ? <Redirect to="/adminlogin" /> : <Component {...props} />
 			}
 		/>
 	);

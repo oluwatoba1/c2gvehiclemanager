@@ -13,17 +13,30 @@ import {
 	LicenseButton
 } from '../styled-components';
 import AuthContext from '../../context/auth/authContext';
+import AlertContext from '../../context/alert/alertContext';
+import LicenseContext from '../../context/license/licenseContext';
+import Navbar from '../layout/Navbar';
 
-export default function Registration() {
+export default function Registration({history}) {
 	const authContext = useContext(AuthContext);
+	const licenseContext = useContext(LicenseContext);
 
-	const [registrationFields, setFields] = useState({
+	const alertContext = useContext(AlertContext);
+
+	const { setAlert } = alertContext;
+	const {loadUser, logout} = authContext;
+	const {saveCredentials, info, error} = licenseContext;
+
+	const getDefaultFields = () => ({
 		application_type: '',
 		test_scores: '',
 		state_of_application: '',
 		application: '',
 		residential_address: ''
-	});
+	})
+
+	const [registrationFields, setFields] = useState(getDefaultFields());
+	const [showSuccess, setShowSuccess] = useState(false)
 
 	const {
 		application_type,
@@ -33,7 +46,7 @@ export default function Registration() {
 	} = registrationFields;
 
 	useEffect(() => {
-		authContext.loadUser();
+		loadUser();
 		//eslint-disable-next-line
 	}, []);
 
@@ -44,10 +57,25 @@ export default function Registration() {
 		});
 	};
 
-	const submit = () => {};
+	const submit = () => {
+		saveCredentials(registrationFields);
+		if(info !==null) {
+			setShowSuccess(true);
+			}
+
+		if(error) setAlert(error, 'danger', 3000)
+			setFields(getDefaultFields());
+	};
+
+	if(showSuccess){
+		return (
+			<h1>{info}</h1>
+		)
+	}else{
 
 	return (
 		<LicenseContainer>
+		<Navbar />
 			<LicenseFormContainer>
 				<LicenseHeader>
 					<LicenseHeaderText>License Registration</LicenseHeaderText>
@@ -61,6 +89,7 @@ export default function Registration() {
 							className="selectvms"
 							onChange={onChange}
 							value={application_type}>
+							<option value="">Application Type</option>
 							<option value="Articulated Vehicle">Articulated Vehicle</option>
 							<option value="Commercial">Commercial</option>
 							<option value="Private">Private</option>
@@ -120,4 +149,5 @@ export default function Registration() {
 			</LicenseFormContainer>
 		</LicenseContainer>
 	);
+	}
 }

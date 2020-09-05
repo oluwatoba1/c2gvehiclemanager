@@ -14,10 +14,10 @@ const Navbar = ({ title, icon, showRegister }) => {
 
 	const authLinks = (
 		<Fragment>
-			<li>Hello, {user && user.name}</li>
+			<li>Hello, {user && user.first_name}</li>
 			<li>
 				<a onClick={onLogout} href="#!">
-					<i className="fas fa-sign-out-alt"></i> <span className="hide-sm">Logout</span>
+					<i className="fas fa-sign-out-alt icon-white"></i> <span className="hide-sm">Logout</span>
 				</a>
 			</li>
 		</Fragment>

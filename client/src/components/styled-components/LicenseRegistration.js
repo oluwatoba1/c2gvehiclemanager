@@ -4,8 +4,9 @@ export const LicenseContainer = styled.div`
 	width: 100vw;
 	height: 100vh;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-around;
 	background-color: #000;
 	padding: 20px;
 `;
