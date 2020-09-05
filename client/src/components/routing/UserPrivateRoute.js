@@ -10,7 +10,7 @@ const UserPrivateRoute = ({ component: Component, ...rest }) => {
 		<Route
 			{...rest}
 			render={props =>
-				!user && !loading ? <Redirect to="/userlogin" /> : <Component {...props} />
+				user === null && !loading ? <Redirect to="/userlogin" /> : <Component {...props} />
 			}
 		/>
 	);

@@ -10,13 +10,29 @@ const Register = props => {
 	const { register, error, clearErrors, isAuthenticated } = authContext;
 
 	const [user, setUser] = useState({
-		name: '',
+		first_name: '',
+		last_name: '',
+		sex: '',
+		date_of_birth: '',
+		state_of_origin: '',
+		occupation: '',
+		residential_address: '',
 		email: '',
-		password: '',
-		password2: ''
+		password: ''
 	});
 
-	let { name, email, password, password2 } = user;
+	const [password2, setPassword2] = useState('');
+	let {
+		first_name,
+		last_name,
+		sex,
+		occupation,
+		residential_address,
+		date_of_birth,
+		state_of_origin,
+		email,
+		password
+	} = user;
 
 	useEffect(() => {
 		if (isAuthenticated) {
@@ -43,27 +59,25 @@ const Register = props => {
 		});
 	};
 
+	const onChangePassword2 = e => setPassword2(e.target.value);
+
 	const onSubmit = e => {
 		e.preventDefault();
-		name = name.trim();
+		first_name = first_name.trim();
+		last_name = last_name.trim();
+		residential_address = residential_address.trim();
+		occupation = occupation.trim();
+		state_of_origin = state_of_origin.trim();
+		sex = sex.trim();
+		date_of_birth = date_of_birth.trim();
+		occupation = occupation.trim();
 		email = email.trim();
 		password = password.trim();
-		if (name === '' && email === '' && password === '' && password2 === '') {
-			setAlert('Please complete all fields', 'danger');
-		} else if (name === '') {
-			setAlert(`Please complete the name field`, 'danger');
-		} else if (email === '') {
-			setAlert(`Please complete the email field`, 'danger');
-		} else if (password === '') {
-			setAlert(`Please complete the password field`, 'danger');
-		} else if (password !== password2) {
+
+		if (password !== password2) {
 			setAlert('passwords do not match', 'danger');
 		} else {
-			register({
-				name,
-				email,
-				password
-			});
+			register(user);
 		}
 	};
 
@@ -75,12 +89,54 @@ const Register = props => {
 
 			<form onSubmit={onSubmit}>
 				<div className="form-group">
-					<label htmlFor="name">Name</label>
-					<input type="text" name="name" value={name} onChange={onChange} required />
+					<label htmlFor="name">First Name</label>
+					<input type="text" name="first_name" value={first_name} onChange={onChange} required />
+				</div>
+				<div className="form-group">
+					<label htmlFor="last_name">Last Name</label>
+					<input type="text" name="last_name" value={last_name} onChange={onChange} required />
 				</div>
 				<div className="form-group">
 					<label htmlFor="email">Email</label>
 					<input type="email" name="email" value={email} onChange={onChange} required />
+				</div>
+				<div className="form-group">
+					<label htmlFor="date_of_birth">Date of Birth</label>
+					<input
+						type="date"
+						name="date_of_birth"
+						value={date_of_birth}
+						onChange={onChange}
+						required
+					/>
+				</div>
+				<div className="form-group">
+					<label htmlFor="sex">Sex</label>
+					<input type="text" name="sex" value={sex} onChange={onChange} required />
+				</div>
+				<div className="form-group">
+					<label htmlFor="state_of_origin">State of Origin</label>
+					<input
+						type="text"
+						name="state_of_origin"
+						value={state_of_origin}
+						onChange={onChange}
+						required
+					/>
+				</div>
+				<div className="form-group">
+					<label htmlFor="occupation">Occupation</label>
+					<input type="text" name="occupation" value={occupation} onChange={onChange} required />
+				</div>
+				<div className="form-group">
+					<label htmlFor="residential_address">Residential Address</label>
+					<input
+						type="text"
+						name="residential_address"
+						value={residential_address}
+						onChange={onChange}
+						required
+					/>
 				</div>
 				<div className="form-group">
 					<label htmlFor="password">Password</label>
@@ -100,7 +156,7 @@ const Register = props => {
 						type="password"
 						name="password2"
 						value={password2}
-						onChange={onChange}
+						onChange={onChangePassword2}
 						required
 						minLength="6"
 					/>
