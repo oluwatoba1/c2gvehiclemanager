@@ -10,7 +10,7 @@ export const ApplicationContainer = styled.div`
 `;
 
 export const ApplicationList = styled.div`
-	width: 40%;
+	width: 60%;
 	height: 80%;
 	border-radius: 10px;
 	background-color: #fff;

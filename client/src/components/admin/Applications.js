@@ -94,7 +94,9 @@ export default function Applications() {
 			<ApplicationList>
 				{applications.data.map(application => (
 					<ApplicationListItem key={application._id} onClick={() => getApplication(application)}>
-						<ApplicationId>{application._id}</ApplicationId>
+						<ApplicationId>
+							{application.user?.first_name} {application.user?.last_name}({application._id})
+						</ApplicationId>
 						<ApplicationStatus>{application.status}</ApplicationStatus>
 					</ApplicationListItem>
 				))}
