@@ -21,7 +21,7 @@ const save = async (req, res) => {
 
 const getApplications = async (req, res) => {
 	try {
-		const applications = await License.find();
+		const applications = await License.find().populate({ path: 'user', select: '-password' });
 
 		res.json({
 			data: applications

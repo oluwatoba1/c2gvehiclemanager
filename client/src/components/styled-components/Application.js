@@ -27,6 +27,7 @@ export const ApplicationListItem = styled.div`
 	border-radius: 10px;
 	border: 2px solid #000;
 	margin-bottom: 20px;
+	cursor: pointer;
 `;
 
 export const ApplicationId = styled.h3`
@@ -52,6 +53,7 @@ export const ModalContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	z-index: 4;
 `;
 
 export const ModalBody = styled.div`
@@ -59,5 +61,6 @@ export const ModalBody = styled.div`
 	height: 80%;
 	border-radius: 10px;
 	background-color: #fff;
-	padding: 20px; ;
+	padding: 20px;
+	z-index: 10;
 `;

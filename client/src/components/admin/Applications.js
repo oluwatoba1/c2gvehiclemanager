@@ -39,7 +39,11 @@ export default function Applications() {
 
 	return (
 		<ApplicationContainer>
-			{/* <ModalContainer></ModalContainer> */}
+			{showModal && (
+				<ModalContainer>
+					<ModalBody>{application.application_type}</ModalBody>
+				</ModalContainer>
+			)}
 			<ApplicationList>
 				{applications.data.map(application => (
 					<ApplicationListItem onClick={() => getApplication(application)}>
